@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { mockMovies } from '../data/mockMovies'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
@@ -20,10 +21,16 @@ function SeatSelectionPage() {
   const fetchMovie = async () => {
     try {
       const res = await axios.get(`${API_URL}/movies/${id}`)
-      setMovie(res.data)
+      if (res.data) {
+        setMovie(res.data)
+        return
+      }
     } catch (err) {
-      console.error(err)
+      console.error('API error, using mock data:', err)
     }
+    // Fallback to mock data
+    const found = mockMovies.find((m) => m.id === Number(id))
+    setMovie(found || null)
   }
 
   const toggleSeat = (seatId) => {

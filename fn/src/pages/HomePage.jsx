@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { mockMovies } from '../data/mockMovies'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
@@ -16,10 +17,19 @@ function HomePage() {
   const fetchMovies = async () => {
     try {
       const res = await axios.get(`${API_URL}/movies/?search=${search}`)
-      setMovies(res.data)
+      if (res.data && res.data.length > 0) {
+        setMovies(res.data)
+        return
+      }
     } catch (err) {
-      console.error(err)
+      console.error('API error, using mock data:', err)
     }
+    // Fallback to mock data
+    const term = search.toLowerCase()
+    const filtered = mockMovies.filter((m) =>
+      m.title.toLowerCase().includes(term)
+    )
+    setMovies(filtered)
   }
 
   return (
