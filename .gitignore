@@ -1,0 +1,52 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Node.js / Frontend
+fn/node_modules
+fn/dist
+fn/dist-ssr
+fn/*.local
+fn/.env
+fn/.env.local
+fn/.env.*.local
+
+# Python / Backend
+bn/venv/
+bn/__pycache__/
+bn/**/__pycache__/
+bn/*.py[cod]
+bn/*$py.class
+bn/*.so
+bn/.Python
+bn/env/
+bn/ENV/
+bn/env.bak/
+bn/venv.bak/
+bn/.env
+bn/.env.local
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS files
+Thumbs.db
+
+# Testing
+fn/coverage
+.pytest_cache/
+htmlcov/
+
+# Build outputs
+*.tgz
+*.tar.gz
