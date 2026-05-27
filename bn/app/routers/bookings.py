@@ -27,7 +27,7 @@ async def create_booking(booking: BookingCreate):
                 raise HTTPException(status_code=400, detail=f"Seat {seat} is already booked")
 
         # Create booking
-        booking_data = booking.dict()
+        booking_data = booking.model_dump()
         booking_data["payment_status"] = "pending"
         response = await client.post("/bookings", json=booking_data)
         response.raise_for_status()

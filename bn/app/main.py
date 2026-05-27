@@ -20,3 +20,8 @@ app.include_router(admin.router)
 @app.get("/")
 def root():
     return {"message": "Movie Ticket Booking API is running"}
+
+
+@app.get("/health")
+def health():
+    return {"status": "ok"}
