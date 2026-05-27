@@ -48,7 +48,7 @@ function HomePage() {
             className="movie-card"
             onClick={() => navigate(`/movie/${movie.id}`)}
           >
-            <img src={movie.image_url} alt={movie.title} />
+            <img src={movie.image_url} alt={movie.title} onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/500x750/2a2a3e/a0a0b0?text=No+Image' }} />
             <div className="movie-card-info">
               <h3>{movie.title}</h3>
               <p>{movie.genre} | {movie.duration}</p>

@@ -35,7 +35,7 @@ function MovieDetailsPage() {
     <div>
       <button className="back-btn" onClick={() => navigate('/')}>Back</button>
       <div className="movie-detail">
-        <img src={movie.image_url} alt={movie.title} />
+        <img src={movie.image_url} alt={movie.title} onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/500x750/2a2a3e/a0a0b0?text=No+Image' }} />
         <div className="movie-detail-info">
           <h2>{movie.title}</h2>
           <p><strong>Genre:</strong> {movie.genre}</p>
