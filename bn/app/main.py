@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.routers import movies, bookings, admin
@@ -25,3 +26,15 @@ def root():
 @app.get("/health")
 def health():
     return {"status": "ok"}
+
+
+@app.get("/debug/env")
+def debug_env():
+    supabase_url = os.getenv("SUPABASE_URL", "")
+    supabase_key = os.getenv("SUPABASE_SERVICE_KEY", "")
+    return {
+        "supabase_url_set": bool(supabase_url),
+        "supabase_url_prefix": supabase_url[:20] if supabase_url else "",
+        "supabase_key_set": bool(supabase_key),
+        "supabase_key_length": len(supabase_key),
+    }
